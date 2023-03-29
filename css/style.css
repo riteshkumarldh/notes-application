@@ -1,0 +1,313 @@
+@import url("https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;700&display=swap");
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html {
+  font-size: 62.5%;
+}
+
+button {
+  all: unset;
+}
+
+li {
+  list-style: none;
+}
+
+a {
+  text-decoration: none;
+  color: inherit;
+}
+
+body {
+  font-family: "Poppins", sans-serif;
+  background-color: #DCE3FB;
+  min-height: 100vh;
+  font-size: 1.6rem;
+  line-height: 1.5;
+}
+
+::-webkit-scrollbar {
+  width: 6px;
+}
+
+::-webkit-scrollbar-thumb {
+  background-color: hsla(0, 0%, 10%, 0.4);
+  border-radius: 1rem;
+}
+
+::-webkit-scrollbar-track {
+  background-color: #fff;
+}
+
+.container {
+  max-width: 1200px;
+  margin-inline: auto;
+  width: 100%;
+  padding-inline: 2rem;
+}
+
+header {
+  box-shadow: 0 1px 10px #2C1C6B;
+}
+header nav {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding-block: 2rem;
+}
+header nav .logo {
+  text-transform: uppercase;
+  letter-spacing: 2px;
+  font-size: 2rem;
+  font-weight: 700;
+  color: #2C1C6B;
+}
+header nav .count {
+  font-size: 1.8rem;
+  color: #2C1C6B;
+}
+
+main {
+  margin-block: 4rem;
+}
+main .notes {
+  display: grid;
+  gap: 2rem;
+  grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+}
+main .notes .note {
+  background-color: #fff;
+  padding: 2rem 1rem 1rem;
+  box-shadow: 0 0 1rem hsla(0, 0%, 10%, 0.3);
+  border-radius: 0.8rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+main .notes .note .content {
+  margin-bottom: 2rem;
+  height: 150px;
+  overflow-y: scroll;
+}
+main .notes .note .content::-webkit-scrollbar {
+  width: 5px;
+}
+main .notes .note .content::-webkit-scrollbar-thumb {
+  background-color: #DCE3FB;
+  border-radius: 1rem;
+}
+main .notes .note .content h2 {
+  font-weight: 700;
+  font-size: 1.8rem;
+  color: hsl(0, 0%, 35%);
+  margin-bottom: 1rem;
+}
+main .notes .note .content p {
+  font-size: 1.4rem;
+  font-weight: 300;
+  letter-spacing: 0.95px;
+}
+main .notes .note .details {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding-top: 1rem;
+  border-top: 1px solid #2C1C6B;
+}
+main .notes .note .details .date {
+  font-size: 1.2rem;
+  font-weight: 500;
+  letter-spacing: 0.95px;
+}
+main .notes .note .details .settings {
+  position: relative;
+}
+main .notes .note .details .settings .dots {
+  cursor: pointer;
+  padding: 0.5rem 1rem;
+  border-radius: 0.5rem;
+  transition: 0.25s;
+}
+main .notes .note .details .settings .dots:hover {
+  background-color: #DCE3FB;
+}
+main .notes .note .details .settings .dots i {
+  font-size: 2rem;
+}
+main .notes .note .details .settings .extra {
+  position: absolute;
+  top: -78px;
+  left: -70px;
+  background-color: #DCE3FB;
+  flex-direction: column;
+  border-radius: 0.8rem;
+  overflow: hidden;
+  opacity: 0;
+  pointer-events: none;
+  display: flex;
+  transition: 0.3s;
+}
+main .notes .note .details .settings .extra.active {
+  opacity: 1;
+  pointer-events: all;
+}
+main .notes .note .details .settings .extra button {
+  padding: 1rem;
+  display: flex;
+  gap: 1rem;
+}
+main .notes .note .details .settings .extra button:hover {
+  background-color: #2C1C6B;
+  color: #fff;
+}
+main .notes .note .details .settings .extra span {
+  font-size: 1.3rem;
+}
+
+.addnote-container {
+  position: fixed;
+  left: 0;
+  top: 0;
+  height: 100vh;
+  width: 100%;
+  display: none;
+  z-index: 3;
+}
+.addnote-container.show {
+  display: block;
+}
+.addnote-container .overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  height: 100vh;
+  width: 100%;
+  background-color: hsla(0, 0%, 10%, 0.3);
+  z-index: 4;
+}
+.addnote-container .addnote {
+  position: absolute;
+  z-index: 5;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background-color: #fff;
+  max-width: 400px;
+  width: 100%;
+  border-radius: 0.5rem;
+  padding-bottom: 2rem;
+  opacity: 0;
+  transition: 0.3s;
+  animation: fade 1s ease forwards;
+}
+.addnote-container .addnote .top {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 2rem 1rem 1rem;
+  border-bottom: 1.5px solid #2C1C6B;
+}
+.addnote-container .addnote .top h2 {
+  font-size: 2rem;
+  color: #2C1C6B;
+}
+.addnote-container .addnote .top .close {
+  padding: 0.5rem;
+  cursor: pointer;
+  display: grid;
+  place-items: center;
+  transition: 0.25s;
+}
+.addnote-container .addnote .top .close:hover {
+  background-color: #DCE3FB;
+  border-radius: 1rem;
+}
+.addnote-container .addnote .top .close i {
+  font-size: 2.5rem;
+}
+.addnote-container .addnote .note-form {
+  padding-inline: 1.5rem;
+  margin-top: 2rem;
+  display: flex;
+  flex-direction: column;
+}
+.addnote-container .addnote .note-form .note-title {
+  border: 1.5px solid #2C1C6B;
+  outline: none;
+  height: 5rem;
+  width: 100%;
+  padding-inline: 1rem;
+  font: inherit;
+  font-size: 1.5rem;
+  border-radius: 0.5rem;
+}
+.addnote-container .addnote .note-form textarea {
+  border: 1.5px solid #2C1C6B;
+  outline: none;
+  width: 100%;
+  height: 150px;
+  margin-top: 2rem;
+  font: inherit;
+  font-size: 1.4rem;
+  padding: 1rem;
+  border-radius: 0.5rem;
+  resize: none;
+}
+.addnote-container .addnote .note-form .addBtn {
+  width: 100%;
+  height: 5rem;
+  background-color: #2C1C6B;
+  color: #DCE3FB;
+  margin-top: 2rem;
+  text-align: center;
+  border-radius: 0.5rem;
+  cursor: pointer;
+  font-size: 1.8rem;
+  text-transform: uppercase;
+  letter-spacing: 2px;
+  font-weight: 700;
+  font: inherit;
+  transition: 0.25s;
+}
+.addnote-container .addnote .note-form .addBtn:hover {
+  opacity: 0.8;
+}
+
+.add-note {
+  position: fixed;
+  right: 2rem;
+  bottom: 2rem;
+  background-color: #fff;
+  height: 6rem;
+  width: 6rem;
+  display: grid;
+  place-items: center;
+  border-radius: 50%;
+  cursor: pointer;
+  box-shadow: 0 0 1rem #2C1C6B;
+  opacity: 0.7;
+  transition: 0.2s;
+  z-index: 2;
+}
+.add-note:hover {
+  opacity: 1;
+}
+.add-note:active {
+  transform: scale(0.95);
+}
+.add-note i {
+  font-size: 3rem;
+  color: #2C1C6B;
+}
+
+@keyframes fade {
+  100% {
+    opacity: 1;
+  }
+}
+
+/*# sourceMappingURL=style.css.map */

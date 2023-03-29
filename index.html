@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Notes App | Ritesh kumar</title>
+
+    <!-- custom css file -->
+    <link rel="stylesheet" href="./css/style.css">
+
+    <!-- box-icons -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/boxicons@latest/css/boxicons.min.css">
+
+    <!-- custom js file -->
+    <script src="./main.js" defer></script>
+</head>
+<body>
+    
+    <header>
+        <nav class="container">
+            <a href="index.html" class="logo">My-notes</a>
+
+            <p class="count">Count: <span data-count>0</span></p>
+        </nav>
+    </header>
+
+    <main class="container">
+
+        <div class="notes" data-notes-container>
+
+            <div class="note">
+                <div class="content">
+                    <h2>My first title note</h2>
+                    <p>
+                        Lorem, ipsum dolor sit amet consectetur adipisicing elit. Voluptatibus cum autem minima. Quis assumenda eum, quasi fuga officiis maiores eaque.
+                    </p>
+                </div>
+                <div class="details">
+                    <p class="date">23 july, 2023</p>
+                    <div class="settings">
+                        <button class="dots" data-settings><i class='bx bx-dots-vertical-rounded'></i></button>
+
+                        <div class="extra" data-extra-details>
+                            <button class="edit" data-btn><i class='bx bxs-edit'></i> <span>Edit</span> </button>
+                            <button class="delete" data-btn><i class='bx bx-trash' ></i><span>Delete</span></button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+
+        <div class="addnote-container" data-formContainer>
+
+            <div class="overlay" data-overlay></div>
+
+            <div class="addnote">
+
+                <div class="top">
+                    <h2>Add note</h2>
+                    <button class="close" data-close><i class='bx bx-x'></i></button>
+                </div>
+
+                <form class="note-form" data-form>
+                    <input type="text" class="note-title" placeholder="Title..." data-title>
+
+                    <textarea placeholder="Add Description..." data-desc></textarea>
+
+                    <button class="addBtn">Save</button>
+                </form>
+
+            </div>
+
+        </div>
+
+
+    </main>
+
+    <button class="add-note" data-noteBtn>
+        <i class='bx bx-plus-medical'></i>
+    </button>
+
+
+
+</body>
+</html>
